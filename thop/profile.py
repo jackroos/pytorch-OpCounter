@@ -2,6 +2,7 @@ from distutils.version import LooseVersion
 
 from thop.vision.basic_hooks import *
 from thop.rnn_hooks import *
+from thop.transformer_hooks import *
 
 
 # logger = logging.getLogger(__name__)
@@ -67,6 +68,10 @@ register_hooks = {
     nn.RNN: count_rnn,
     nn.GRU: count_gru,
     nn.LSTM: count_lstm,
+
+    nn.LayerNorm: count_ln,
+
+    nn.MultiheadAttention: count_attn,
 }
 
 if LooseVersion(torch.__version__) >= LooseVersion("1.1.0"):
